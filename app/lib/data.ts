@@ -1,5 +1,7 @@
 import { sql } from "@vercel/postgres";
 import { unstable_noStore as noStore } from "next/cache";
+import * as admin from "firebase-admin";
+import { getFirestore } from "firebase-admin/firestore";
 import {
   CustomerField,
   CustomersTable,
@@ -238,3 +240,21 @@ export async function getUser(email: string) {
     throw new Error("Failed to fetch user.");
   }
 }
+
+// console.log(
+//   "process.env.GOOGLE_APPLICATION_CREDENTIALS",
+//   process.env.GOOGLE_APPLICATION_CREDENTIALS
+// );
+// const credential = JSON.parse(
+//   Buffer.from(process.env.GOOGLE_APPLICATION_CREDENTIALS, "base64").toString()
+// );
+
+const adminApp = !admin.apps.length
+  ? admin.initializeApp({
+      credential: admin.credential.applicationDefault(),
+    })
+  : admin.app();
+
+const adminAuth = adminApp?.auth();
+
+export const adminDb = getFirestore(adminApp);
