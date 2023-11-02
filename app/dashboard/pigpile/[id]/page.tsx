@@ -22,7 +22,7 @@ async function Donations({ id }: { id: string }) {
       {!donations.length && <p>No donations yet.</p>}
 
       {donations.map((c) => (
-        <p className="hidden md:block">{c.quantity || c.amount}</p>
+        <p className="sm:block md:block">{c.quantity || c.amount}</p>
       ))}
     </div>
   );

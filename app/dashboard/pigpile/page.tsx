@@ -17,7 +17,7 @@ export default async function Page() {
       <p>Pigpile: {campaigns.length}</p>
       {campaigns.map((c) => (
         <Link key={c.id} href={`/dashboard/pigpile/${c.id}`}>
-          <p className="hidden md:block">{c.id}</p>
+          <p className="foo">{c.id}</p>
         </Link>
       ))}
     </main>
