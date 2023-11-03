@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import Image from "next/image";
 import { adminDb } from "@/app/lib/data";
 
 async function Donations({ id }: { id: string }) {
@@ -36,6 +37,13 @@ export default async function Page({ params }: { params: { id: string } }) {
 
   return (
     <div>
+      <Image
+        src="/on-the-farm.png"
+        width={1200}
+        height={700}
+        className=""
+        alt="Screenshots of the dashboard project showing desktop and mobile versions"
+      />
       {!data && <p>{id} not found.</p>}
       {data && (
         <>
