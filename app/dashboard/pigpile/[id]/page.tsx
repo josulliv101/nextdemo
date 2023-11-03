@@ -1,6 +1,25 @@
 import { Suspense } from "react";
 import Image from "next/image";
 import { adminDb } from "@/app/lib/data";
+import { Metadata, ResolvingMetadata } from "next";
+
+type Props = {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const id = params.id;
+  const refCampaign = adminDb.collection("campaigns").doc(id);
+  const doc = await refCampaign.get();
+  const data = !doc.exists ? null : doc.data();
+  return {
+    title: data?.beneficiary,
+  };
+}
 
 async function Donations({ id }: { id: string }) {
   const donationsRef = adminDb
