@@ -105,7 +105,7 @@ export default function ContentFrame({
               top: placement !== "left" ? 64 : 0,
               borderTopRightRadius: placement === "left" ? 12 : 0,
             }}
-            className="w-full flex flex-col justify-center gap-6  bg-gray-50 px-6 py-10"
+            className="w-full flex flex-col justify-start gap-6  bg-gray-50 px-6 py-10"
           >
             <NavControls active={placement} onChange={setPlacement} />
             foobar: {pathname}

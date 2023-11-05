@@ -15,7 +15,7 @@ export default function Subhead({ children }: { children: React.ReactNode }) {
         minWidth: active !== "left" ? "100%" : "600px",
         color: "#fff",
         position: "fixed",
-        top: active !== "left" ? 140 : 140,
+        top: active !== "left" ? 100 : 100,
         // right: active !== "left" ? 200 : "auto",
         left: active !== "left" ? "-50vw" : "100%",
         transform: active !== "left" ? "translateX(0%)" : "translateX(100px)",
