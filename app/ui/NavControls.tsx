@@ -15,21 +15,21 @@ export default function NavControls({
           onClick={() => onChange("left")}
           className="px-4 py-2 hover:bg-slate-50 hover:text-slate-900"
         >
-          left
+          L
         </button>
         <button
           style={{ opacity: active === "center" ? 1 : 0.5 }}
           onClick={() => onChange("center")}
           className="px-4 py-2 hover:bg-slate-50 hover:text-slate-900"
         >
-          center
+          C
         </button>
         <button
           style={{ opacity: active === "right" ? 1 : 0.5 }}
           onClick={() => onChange("right")}
           className="px-4 py-2 hover:bg-slate-50 hover:text-slate-900"
         >
-          right
+          R
         </button>
       </div>
     </div>

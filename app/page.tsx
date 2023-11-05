@@ -7,9 +7,7 @@ import Subhead from "@/app/Subhead";
 export default function Page() {
   return (
     <>
-      <p
-        className={`${lusitana.className} text-xl text-gray-800 md:text-3xl md:leading-normal`}
-      >
+      <p className={`text-xl text-gray-800 md:text-3xl md:leading-normal`}>
         <strong>Pigpile on good causes.</strong>
       </p>
       <p>an online fund-raising platform</p>
@@ -26,6 +24,8 @@ export default function Page() {
         <span>View Pigpiles</span>
       </Link>
       <Subhead>
+        <br />
+        <br />
         <p
           style={{
             fontSize: 40,

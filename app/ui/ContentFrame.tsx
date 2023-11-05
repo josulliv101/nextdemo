@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { ArrowPathIcon } from "@heroicons/react/24/outline";
+
 import Link from "next/link";
 import { sriracha } from "@/app/ui/fonts";
 import NavControls from "./NavControls";
@@ -14,8 +17,22 @@ export default function ContentFrame({
   const [placement, setPlacement] = useState<"left" | "center" | "right">(
     "right"
   );
+  const pathname = usePathname();
   return (
     <ThemeContext.Provider value={placement}>
+      <div
+        style={{
+          zIndex: 9999,
+          position: "fixed",
+          top: pathname === "/" ? 0 : -8,
+          left: placement !== "left" ? "32vw" : "62vw",
+          transform: pathname === "/" ? "scale(.8)" : "scale(.6)",
+          transition: "all 300ms ease-in-out",
+        }}
+      >
+        <img src="/logo.png" width="84" height="84" />
+        {/* <ArrowPathIcon className="h-24 w-24 text-white" /> */}
+      </div>
       <div
         style={{
           // transition: "all 500ms ease-in 0s",
@@ -74,10 +91,10 @@ export default function ContentFrame({
               style={{
                 height: 64,
                 width: "100%",
-                backgroundColor: "rgba(0,0,0,.8)",
+                backgroundColor: "#edeeee",
                 position: "absolute",
                 top: 0,
-                borderTopLeftRadius: "8px",
+                borderTopLeftRadius: "12px",
               }}
             />
           )}
@@ -86,11 +103,13 @@ export default function ContentFrame({
               height: "100%",
               position: "relative",
               top: placement !== "left" ? 64 : 0,
-              borderTopRightRadius: placement === "left" ? 8 : 0,
+              borderTopRightRadius: placement === "left" ? 12 : 0,
             }}
             className="w-full flex flex-col justify-center gap-6  bg-gray-50 px-6 py-10"
           >
             <NavControls active={placement} onChange={setPlacement} />
+            foobar: {pathname}
+            <br />
             {children}
           </div>
         </div>
