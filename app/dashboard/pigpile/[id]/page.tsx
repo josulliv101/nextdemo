@@ -57,9 +57,9 @@ export default async function Page({ params }: { params: { id: string } }) {
   return (
     <div>
       <Image
-        src="/on-the-farm.png"
-        width={1200}
-        height={700}
+        src="/lewis-shc-playbtn.png"
+        width={630}
+        height={354}
         className=""
         alt="Screenshots of the dashboard project showing desktop and mobile versions"
       />
