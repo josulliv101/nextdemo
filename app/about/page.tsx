@@ -6,17 +6,23 @@ export default function Page() {
     <>
       <p>About Page</p>
       <Subhead>
+        <br />
+        <br />
         <p
           style={{
-            fontSize: 64,
+            fontSize: 40,
             marginBottom: 12,
           }}
-        ></p>
+        >
+          About
+        </p>
         <p
           style={{
             fontSize: 24,
           }}
-        ></p>
+        >
+          an online fundraising platform
+        </p>
       </Subhead>
     </>
   );
