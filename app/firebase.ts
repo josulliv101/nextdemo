@@ -20,3 +20,5 @@ export const getFirebaseAdminApp = () => {
 
   return initializeApp();
 };
+
+export const db = admin.firestore(getFirebaseAdminApp());

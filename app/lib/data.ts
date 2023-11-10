@@ -240,11 +240,3 @@ export async function getUser(email: string) {
     throw new Error("Failed to fetch user.");
   }
 }
-
-// console.log(
-//   "process.env.GOOGLE_APPLICATION_CREDENTIALS",
-//   process.env.GOOGLE_APPLICATION_CREDENTIALS
-// );
-// const credential = JSON.parse(
-//   Buffer.from(process.env.GOOGLE_APPLICATION_CREDENTIALS, "base64").toString()
-// );

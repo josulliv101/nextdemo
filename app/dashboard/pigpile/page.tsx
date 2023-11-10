@@ -1,9 +1,11 @@
 import Link from "next/link";
+import * as admin from "firebase-admin/firestore";
 import { usePathname } from "next/navigation";
-import getAdminDb from "@/app/lib/getAdminDb";
+import { getFirebaseAdminApp } from "@/app/firebase";
 
 export default async function Page() {
-  const adminDb = await getAdminDb();
+  const app = getFirebaseAdminApp();
+  const adminDb = admin.getFirestore(app);
   const citiesRef = adminDb.collection("campaigns");
   const snapshot = await citiesRef.get();
 

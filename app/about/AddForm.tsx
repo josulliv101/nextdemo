@@ -1,4 +1,5 @@
 "use client";
+
 import {
   experimental_useOptimistic as useOptimistic,
   useState,
@@ -25,9 +26,9 @@ export function AddForm({ createCampaign }: { createCampaign: any }) {
   //   })
   // );
 
-  // console.log("optimisticMessage", optimisticMessage);
+  console.log("add form state", state);
   return (
-    <form ref={refEl} action={createCampaign}>
+    <form action={formAction}>
       <label htmlFor="todo">Enter Task</label>
       <input type="text" id="beneficiary" name="beneficiary" required />
       <SubmitButton />

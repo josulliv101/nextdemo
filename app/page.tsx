@@ -1,13 +1,16 @@
 import AcmeLogo from "@/app/ui/acme-logo";
 import { lusitana, sriracha } from "@/app/ui/fonts";
 import Link from "next/link";
+import * as admin from "firebase-admin/firestore";
 import Image from "next/image";
 import Subhead from "@/app/Subhead";
-import getAdminDb from "@/app/lib/getAdminDb";
+import { db } from "@/app/firebase";
+import { app } from "firebase-admin";
 
 export default async function Page() {
-  const adminDb = await getAdminDb();
-  const citiesRef = adminDb.collection("campaigns");
+  // const app = getFirebaseAdminApp();
+  // const adminDb = admin.getFirestore(app);
+  const citiesRef = db.collection("campaigns");
   const snapshot = await citiesRef.get();
 
   const campaigns: Array<any> = [];

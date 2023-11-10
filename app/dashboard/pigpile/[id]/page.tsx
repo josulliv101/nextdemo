@@ -1,7 +1,8 @@
 import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import getAdminDb from "@/app/lib/getAdminDb";
+import * as admin from "firebase-admin/firestore";
+import { getFirebaseAdminApp } from "@/app/firebase";
 import { Metadata, ResolvingMetadata } from "next";
 import Subhead from "@/app/Subhead";
 type Props = {
@@ -14,7 +15,8 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const id = params.id;
-  const adminDb = await getAdminDb();
+  const app = getFirebaseAdminApp();
+  const adminDb = admin.getFirestore(app);
   const refCampaign = adminDb.collection("campaigns").doc(id);
   const doc = await refCampaign.get();
   const data = !doc.exists ? null : doc.data();
@@ -24,7 +26,8 @@ export async function generateMetadata(
 }
 
 async function Donations({ id }: { id: string }) {
-  const adminDb = await getAdminDb();
+  const app = getFirebaseAdminApp();
+  const adminDb = admin.getFirestore(app);
   const donationsRef = adminDb
     .collection("campaigns")
     .doc(id)
@@ -53,7 +56,8 @@ async function Donations({ id }: { id: string }) {
 
 export default async function Page({ params }: { params: { id: string } }) {
   const id = params.id;
-  const adminDb = await getAdminDb();
+  const app = getFirebaseAdminApp();
+  const adminDb = admin.getFirestore(app);
   const refCampaign = adminDb.collection("campaigns").doc(id);
   const doc = await refCampaign.get();
   const data = !doc.exists ? null : doc.data();

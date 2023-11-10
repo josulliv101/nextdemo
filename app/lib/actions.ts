@@ -5,20 +5,18 @@ import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 // import * as admin from "firebase-admin";
-import * as firebase from "firebase-admin/firestore";
+import * as admin from "firebase-admin/firestore";
 // import { getFirestore } from "firebase/firestore";
 import { signIn } from "../auth";
-import { getFirebaseAdminApp } from "@/app/firebase";
+import { db } from "@/app/firebase";
 
-export async function createCampaign(prevState: any, formData: FormData) {
-  console.log("server action: createCampaign");
+export async function createCampaign(prevState: State, formData: FormData) {
+  console.log("server action: createCampaign", formData);
+  const id = formData.get("beneficiary")?.toString();
+  console.log("try...", id);
+
   try {
-    const app = getFirebaseAdminApp();
-    const id = formData.get("beneficiary")?.toString();
-    console.log("try...", id);
     if (id) {
-      const db = firebase.getFirestore(app);
-
       const idInUse = (await db.collection("campaigns").doc(id).get()).exists;
       if (idInUse) {
         throw new Error(`'${id}' already in use.`);
