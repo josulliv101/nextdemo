@@ -4,9 +4,43 @@ import { z } from "zod";
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+// import * as admin from "firebase-admin";
+import * as firebase from "firebase-admin/firestore";
+// import { getFirestore } from "firebase/firestore";
 import { signIn } from "../auth";
+import { getFirebaseAdminApp } from "@/app/firebase";
 
-// ...
+export async function createCampaign(prevState: any, formData: FormData) {
+  console.log("server action: createCampaign");
+  try {
+    const app = getFirebaseAdminApp();
+    const id = formData.get("beneficiary")?.toString();
+    console.log("try...", id);
+    if (id) {
+      const db = firebase.getFirestore(app);
+
+      const idInUse = (await db.collection("campaigns").doc(id).get()).exists;
+      if (idInUse) {
+        throw new Error(`'${id}' already in use.`);
+      }
+      const snapshot = await db.collection("campaigns").doc(id).set({
+        beneficiary: "Los Angeles",
+        id,
+      });
+    }
+
+    revalidatePath("/");
+    return { message: `Added campaign.` };
+  } catch (e) {
+    let error = "default"; // error under useUnknownInCatchVariables
+    if (typeof e === "string") {
+      error = e; // works, `e` narrowed to string
+    } else if (e instanceof Error) {
+      error = e.message; // works, `e` narrowed to Error
+    }
+    return { message: "Failed to create campaign: " + error };
+  }
+}
 
 export async function authenticate(
   prevState: string | undefined,

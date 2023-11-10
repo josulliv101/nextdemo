@@ -3,15 +3,16 @@ import { lusitana, sriracha } from "@/app/ui/fonts";
 import Link from "next/link";
 import Image from "next/image";
 import Subhead from "@/app/Subhead";
-import { adminDb } from "@/app/lib/data";
+import getAdminDb from "@/app/lib/getAdminDb";
 
 export default async function Page() {
+  const adminDb = await getAdminDb();
   const citiesRef = adminDb.collection("campaigns");
   const snapshot = await citiesRef.get();
 
   const campaigns: Array<any> = [];
 
-  snapshot.forEach((doc) => {
+  snapshot.forEach((doc: any) => {
     console.log(doc.id, "=>", doc.data());
     return campaigns.push(doc.data());
   });

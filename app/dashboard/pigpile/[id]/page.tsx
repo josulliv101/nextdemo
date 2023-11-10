@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { adminDb } from "@/app/lib/data";
+import getAdminDb from "@/app/lib/getAdminDb";
 import { Metadata, ResolvingMetadata } from "next";
 import Subhead from "@/app/Subhead";
 type Props = {
@@ -14,6 +14,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const id = params.id;
+  const adminDb = await getAdminDb();
   const refCampaign = adminDb.collection("campaigns").doc(id);
   const doc = await refCampaign.get();
   const data = !doc.exists ? null : doc.data();
@@ -23,6 +24,7 @@ export async function generateMetadata(
 }
 
 async function Donations({ id }: { id: string }) {
+  const adminDb = await getAdminDb();
   const donationsRef = adminDb
     .collection("campaigns")
     .doc(id)
@@ -31,7 +33,7 @@ async function Donations({ id }: { id: string }) {
 
   const donations: Array<any> = [];
 
-  snapshot.forEach((doc) => {
+  snapshot.forEach((doc: any) => {
     console.log(doc.id, "=>", doc.data());
     return donations.push(doc.data());
   });
@@ -51,6 +53,7 @@ async function Donations({ id }: { id: string }) {
 
 export default async function Page({ params }: { params: { id: string } }) {
   const id = params.id;
+  const adminDb = await getAdminDb();
   const refCampaign = adminDb.collection("campaigns").doc(id);
   const doc = await refCampaign.get();
   const data = !doc.exists ? null : doc.data();

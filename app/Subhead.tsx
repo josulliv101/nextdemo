@@ -11,8 +11,8 @@ export default function Subhead({ children }: { children: React.ReactNode }) {
       style={{
         display: "flex",
         flexDirection: "column",
-        alignItems: active !== "left" ? "center" : "flex-start",
-        minWidth: active !== "left" ? "100%" : "600px",
+        alignItems: active !== "left" ? "center" : "center",
+        minWidth: active !== "left" ? "100%" : "65vw",
         color: "#fff",
         position: "fixed",
         top: active !== "left" ? 100 : 100,

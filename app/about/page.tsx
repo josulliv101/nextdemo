@@ -1,10 +1,14 @@
-import { useContext } from "react";
+import { createCampaign } from "@/app/lib/actions";
 import Subhead from "@/app/Subhead";
+import { AddForm } from "./AddForm";
 
 export default function Page() {
   return (
     <>
       <p>About Page</p>
+      <div>
+        <AddForm createCampaign={createCampaign} />
+      </div>
       <Subhead>
         <br />
         <br />
@@ -21,7 +25,7 @@ export default function Page() {
             fontSize: 24,
           }}
         >
-          an online fundraising platform
+          Thanks for checking out the site
         </p>
       </Subhead>
     </>

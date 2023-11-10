@@ -248,18 +248,3 @@ export async function getUser(email: string) {
 // const credential = JSON.parse(
 //   Buffer.from(process.env.GOOGLE_APPLICATION_CREDENTIALS, "base64").toString()
 // );
-
-const serviceAccount = JSON.parse(
-  process.env.FIREBASE_SERVICE_ACCOUNT_KEY as string
-);
-console.log("serviceAccount", typeof serviceAccount, serviceAccount);
-const adminApp = !admin.apps.length
-  ? admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount),
-      projectId: "fir-abc-a965d",
-    })
-  : admin.app();
-
-const adminAuth = adminApp?.auth();
-
-export const adminDb = getFirestore(adminApp);

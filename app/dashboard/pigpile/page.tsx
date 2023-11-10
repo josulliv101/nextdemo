@@ -1,14 +1,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { adminDb } from "@/app/lib/data";
+import getAdminDb from "@/app/lib/getAdminDb";
 
 export default async function Page() {
+  const adminDb = await getAdminDb();
   const citiesRef = adminDb.collection("campaigns");
   const snapshot = await citiesRef.get();
 
   const campaigns: Array<any> = [];
 
-  snapshot.forEach((doc) => {
+  snapshot.forEach((doc: any) => {
     console.log(doc.id, "=>", doc.data());
     return campaigns.push(doc.data());
   });
