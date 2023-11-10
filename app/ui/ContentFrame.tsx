@@ -49,7 +49,7 @@ export default function ContentFrame({
           } bottom`,
           backgroundSize: "cover",
           backgroundImage:
-            "linear-gradient(180deg,#4299e1,hsla(0,0%,48%,0.5)),url(/on-the-farm.png)",
+            "linear-gradient(180deg,#4299e1,hsla(0,0%,48%,0.5)),url(/on-the-farm.webp)",
         }}
       />{" "}
       <p

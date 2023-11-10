@@ -19,7 +19,7 @@ const config: Config = {
         },
       },
       backgroundImage: {
-        "on-the-farm": "url('/on-the-farm.png')",
+        "on-the-farm": "url('/on-the-farm.webp')",
       },
     },
     keyframes: {
