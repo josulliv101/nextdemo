@@ -16,7 +16,7 @@ const initialState = {
 };
 
 export function AddForm({ createCampaign }: { createCampaign: any }) {
-  const refEl = useRef(null);
+  const refEl = useRef<HTMLFormElement>(null);
   const [state, formAction] = useFormState(createCampaign, initialState);
   // const [optimisticMessage, addOptimisticMessage] = useOptimistic(
   //   initialState,
@@ -25,10 +25,14 @@ export function AddForm({ createCampaign }: { createCampaign: any }) {
   //     sending: true,
   //   })
   // );
+  // const handleSubmit = (fd: FormData) => {
+  //   formAction();
+  //   refEl.current?.reset();
+  // };
 
   console.log("add form state", state);
   return (
-    <form action={formAction}>
+    <form ref={refEl} action={formAction}>
       <label htmlFor="todo">Enter Task</label>
       <input type="text" id="beneficiary" name="beneficiary" required />
       <SubmitButton />

@@ -22,6 +22,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/@tailwindcss/ui/dist/tailwind-ui.min.css"
+        />
+      </head>
       <body className={`${inter.className} antialiased`}>
         <main className="bg-cover bg-bottom  h-14  flex min-h-screen">
           <div

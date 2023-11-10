@@ -28,6 +28,7 @@ export async function createCampaign(prevState: State, formData: FormData) {
     }
 
     revalidatePath("/");
+    // redirect("/dashboard/pigpile");
     return { message: `Added campaign.` };
   } catch (e) {
     let error = "default"; // error under useUnknownInCatchVariables

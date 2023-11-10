@@ -54,7 +54,12 @@ async function Donations({ id }: { id: string }) {
   );
 }
 
-export default async function Page({ params }: { params: { id: string } }) {
+export default async function Page({
+  params,
+}: {
+  // children?: React.ReactNode;
+  params: { id: string };
+}) {
   const id = params.id;
   const app = getFirebaseAdminApp();
   const adminDb = admin.getFirestore(app);
@@ -62,6 +67,8 @@ export default async function Page({ params }: { params: { id: string } }) {
   const doc = await refCampaign.get();
   const data = !doc.exists ? null : doc.data();
   const tags: Array<string> = data?.tags || [];
+  const path = `/dashboard/pigpile/${id}/donate` as any;
+
   return (
     <>
       <div>
@@ -113,7 +120,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         </p>{" "}
         <div style={{ display: "flex", marginTop: 32 }}>
           {" "}
-          <Link href={`/dashboard/pigpile/${id}`}>
+          <Link href={path}>
             <span
               style={{}}
               // onClick={() => console.log("left")}
