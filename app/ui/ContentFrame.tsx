@@ -30,7 +30,7 @@ export default function ContentFrame({
           transition: "all 300ms ease-in-out",
         }}
       >
-        <img src="/logo.png" width="84" height="84" />
+        <img src="/logo.png" width="84" height="84" alt="farm" />
         {/* <ArrowPathIcon className="h-24 w-24 text-white" /> */}
       </div>
       <div
